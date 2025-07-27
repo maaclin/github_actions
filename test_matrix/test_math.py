@@ -1,6 +1,6 @@
 
 import unittest
-from math_stuff import add
+from math import add
 
 class TestAddFunction(unittest.TestCase):
     def test_add_positive_numbers(self):
