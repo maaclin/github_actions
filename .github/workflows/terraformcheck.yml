@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Linting for Terraform 
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ "**" ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+      - name: Initalise terraform
+        run: terraform init
+      - name: Run a syntax check on  code
+        run: terraform fmt -check
+      - name: Run a validation check of code 
+        run: terraform validate
+        
