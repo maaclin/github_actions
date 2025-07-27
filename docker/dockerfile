@@ -11,6 +11,4 @@ COPY . .
 
 EXPOSE 5000
 
-RUN 
-
 CMD ["python", "hello_app.py"]

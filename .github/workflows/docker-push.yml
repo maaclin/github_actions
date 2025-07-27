@@ -20,8 +20,19 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t maaclin99/repo1:dockerfilechange docker/
+        run: |
+          sha=$(git rev-parse --short HEAD)
+          branch=$(git rev-parse --abbrev-ref HEAD)
 
-      - name: Docker push image to Docker Hub
-        run: docker push maaclin99/repo1:dockerfilechange
-        
+          if [ "$branch" == "main" ]; then
+            tag="latest"
+          else
+            tag="$branch-$sha"
+          fi
+
+          docker build -t maaclin99/repo1:$sha docker/
+          docker push maaclin99/repo1:$sha
+          
+          docker tag maaclin99/repo1:$sha maaclin99/repo1:$tag
+          docker push maaclin99/repo1:$tag
+    
