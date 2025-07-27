@@ -1,0 +1,23 @@
+
+name: Pushing Dockerfile to Docker Hub
+
+on:
+  push:
+    branches: [ "**" ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: 
+        uses: 
+      - name: 
+        run: 
+      - name: 
+        run: 
+        
